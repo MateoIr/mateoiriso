@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es" data-v="c">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mateo Iriso · Full Stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.55; transition: background .3s, color .3s; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  h2 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 28px; letter-spacing: -.02em; }
+  .muted { color: var(--muted); }
+
+  /* ---------- Top: intro + foto + métricas ---------- */
+  .top { display: grid; gap: 20px; padding-top: 56px; }
+  .intro h1 { font-size: clamp(38px, 7vw, 76px); line-height: 1; letter-spacing: -.035em; font-weight: 800; }
+  .intro .role { font-size: 19px; margin-top: 18px; max-width: 560px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: var(--r); font-weight: 600; font-size: 15px; text-decoration: none; border: 1.5px solid var(--fg); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 22px; padding: 6px 12px; border-radius: 99px; background: var(--chip); }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.2); }
+  .photo { border-radius: var(--r-lg); background: url("foto.png") center 20% / cover; min-height: 320px; }
+  .metric { padding: 22px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); }
+  .metric b { display: block; font-size: 40px; line-height: 1; letter-spacing: -.03em; color: var(--accent); }
+  .metric span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  /* ---------- Caso MYM ---------- */
+  .case { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: start; }
+  .case p + p { margin-top: 14px; }
+  .flow { list-style: none; display: grid; gap: 10px; counter-reset: f; }
+  .flow li { counter-increment: f; display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); font-weight: 500; }
+  .flow li::before { content: counter(f); flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; }
+  .flow li.hl { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+  .rule { margin-top: 22px; padding: 18px 20px; border-left: 4px solid var(--accent); background: var(--card); border-radius: 0 var(--r) var(--r) 0; font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tags span { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 5px 10px; border-radius: 99px; background: var(--chip); }
+
+  /* ---------- Otros proyectos ---------- */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .proj { padding: 26px; border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+  .proj h3 { font-size: 20px; }
+  .proj .when { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: var(--muted); }
+  .proj .tags { margin-top: auto; padding-top: 8px; }
+
+  /* ---------- Stack ---------- */
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .stack div { padding: 22px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); }
+  .stack h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+  .stack p { font-weight: 600; }
+
+  /* ---------- Cómo trabajo ---------- */
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+  .how h3 { font-size: 18px; margin-bottom: 8px; }
+
+  /* ---------- Contacto ---------- */
+  .contact { text-align: center; padding: 96px 0; }
+  .contact h2 { font-size: clamp(32px, 5vw, 52px); }
+  .contact .cta { justify-content: center; }
+  footer { text-align: center; padding: 28px 0 40px; font-size: 13px; color: var(--muted); }
+
+  /* ======================================================
+     Variante C · Bento: tarjetas de colores, todo a la vista
+     ====================================================== */
+  [data-v="c"] {
+    --bg: #f3f1ec; --fg: #1a1a1a; --muted: #5d5d5d; --accent: #ff5a36; --on-accent: #fff;
+    --card: #fff; --line: transparent; --chip: #f1ede4; --glow: rgba(255,90,54,.18);
+    --r: 18px; --r-lg: 26px;
+  }
+  [data-v="c"] .top { grid-template-columns: repeat(4, 1fr); grid-template-areas: "intro intro intro photo" "intro intro intro photo" "m m m m"; }
+  [data-v="c"] .intro { grid-area: intro; background: #fff; border-radius: var(--r-lg); padding: 40px; }
+  [data-v="c"] .photo { grid-area: photo; }
+  [data-v="c"] .metrics { grid-area: m; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  [data-v="c"] .metric:nth-child(1) { background: #1a1a1a; color: #fff; }
+  [data-v="c"] .metric:nth-child(1) b { color: #ffb199; }
+  [data-v="c"] .metric:nth-child(1) span { color: #c8c8c8; }
+  [data-v="c"] .metric:nth-child(2) { background: #ff5a36; }
+  [data-v="c"] .metric:nth-child(2) b, [data-v="c"] .metric:nth-child(2) span { color: #fff; }
+  [data-v="c"] .metric:nth-child(3) { background: #d7e8ff; }
+  [data-v="c"] .metric:nth-child(3) b { color: #1d4ed8; }
+  [data-v="c"] .metric:nth-child(4) { background: #ffe58a; }
+  [data-v="c"] .metric:nth-child(4) b { color: #1a1a1a; }
+  [data-v="c"] .metric { padding: 28px; }
+  [data-v="c"] .proj:nth-child(1) { background: #d7e8ff; }
+  [data-v="c"] .proj:nth-child(2) { background: #ffe58a; }
+  [data-v="c"] .contact { background: #1a1a1a; color: #fff; border-radius: 32px; margin: 0 24px; }
+  [data-v="c"] .contact .btn:not(.primary) { border-color: #fff; }
+
+  @media (max-width: 760px) {
+    section { padding: 52px 0; }
+    .top, [data-v] .top { grid-template-columns: 1fr !important; grid-template-areas: "photo" "intro" "m" !important; }
+    [data-v] .metrics { grid-template-columns: 1fr 1fr !important; }
+    [data-v] .photo { min-height: 300px; }
+    .case { grid-template-columns: 1fr; }
+    [data-v="c"] .intro { padding: 26px; }
+    [data-v="c"] .contact { margin: 0 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="intro">
+      <span class="status">Disponible · remoto o híbrido en Córdoba</span>
+      <h1>Mateo Iriso</h1>
+      <p class="role">Desarrollador Full Stack. Construyo sistemas completos con Java, Spring Boot, React y React Native, y los llevo a producción en AWS.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:mateoiriso@gmail.com">Escribime</a>
+        <a class="btn" href="Iriso_Mateo_CV_2026.pdf" download>CV en español</a>
+        <a class="btn" href="Iriso_Mateo_Resume_EN.pdf" download>Resume in English</a>
+      </div>
+    </div>
+    <div class="photo" role="img" aria-label="Foto de Mateo Iriso"></div>
+    <div class="metrics">
+      <div class="metric"><b>3 años</b><span>desarrollando para clientes reales</span></div>
+      <div class="metric"><b>~65</b><span>repartidores y clientes usan la app que hice para MYM</span></div>
+      <div class="metric"><b>2</b><span>sistemas completos en producción, de la base de datos al celular</span></div>
+      <div class="metric"><b>1.º</b><span>puesto en la Hackacode 2024 de TodoCode Academy</span></div>
+    </div>
+  </header>
+</div>
+
+<section>
+  <div class="wrap case">
+    <div>
+      <p class="eyebrow">Caso principal · MYM Distribuidora · 2025 a hoy</p>
+      <h2>Un sistema de pedidos completo, hecho y mantenido por mí.</h2>
+      <p>MYM es una distribuidora que necesitaba ordenar todo el circuito de sus pedidos. Diseñé el backend en Spring Boot, la web en React y la app Android en React Native con Expo, que hoy usan unas 65 personas.</p>
+      <p>También me ocupo de la infraestructura en AWS, el deploy automático con Docker y GitHub Actions, y el monitoreo con Grafana, Loki y Prometheus.</p>
+      <div class="rule">
+        <b>El problema más interesante:</b> cuando un pedido queda parcial o cancelado, los productos que sobran en la camioneta se ofrecen a los próximos clientes. Si el producto estaba en el pedido original, se respeta el precio viejo. Si no estaba y hubo aumento, se cobra el nuevo.
+      </div>
+      <div class="tags"><span>Java</span><span>Spring Boot</span><span>Spring Security + JWT</span><span>MySQL</span><span>React</span><span>React Native (Expo)</span><span>AWS</span><span>Docker</span><span>Grafana</span></div>
+    </div>
+    <ol class="flow" aria-label="Flujo de un pedido">
+      <li>El cliente hace el pedido desde la app</li>
+      <li>El sistema lo clasifica por zona en Google Maps</li>
+      <li>Se asigna a un repartidor</li>
+      <li>Entrega completa, parcial o cancelada</li>
+      <li class="hl">Los sobrantes se reasignan a otros pedidos</li>
+      <li>Se registran créditos, comisiones y pagos</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Otros proyectos</p>
+    <h2>Del hardware automotriz a la web de un negocio.</h2>
+    <div class="projects">
+      <article class="proj">
+        <span class="when">EFE Electrónica · 2024 a 2025</span>
+        <h3>Gestión y versionado de módulos automotrices</h3>
+        <p>Backend en Spring Boot que administra los módulos de un equipo de diagnóstico para autos y guarda cada versión en Amazon S3. Hice también la app de escritorio en Python con PyQt5 y los tests con JUnit y Mockito.</p>
+        <div class="tags"><span>Spring Boot</span><span>MapStruct</span><span>S3</span><span>PyQt5</span><span>JUnit</span></div>
+      </article>
+      <article class="proj">
+        <span class="when">Freelance · 2026</span>
+        <h3>Sitios web para negocios</h3>
+        <p>Webs rápidas en React para clientes chicos, desarrolladas con Claude Code. Ejemplo publicado: <a href="https://anagottardi.com.ar" target="_blank" rel="noopener">anagottardi.com.ar</a>.</p>
+        <div class="tags"><span>React</span><span>Claude Code</span><span>Hostinger</span></div>
+      </article>
+      <article class="proj">
+        <span class="when">Hackacode · 2024</span>
+        <h3>Primer puesto con una web de reservas</h3>
+        <p>Una plataforma estilo Booking hecha en equipo durante la hackathon de TodoCode Academy. Me encargué del frontend con React y Material UI.</p>
+        <div class="tags"><span>React</span><span>Material UI</span><span>Trabajo en equipo</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Stack</p>
+    <h2>Con lo que trabajo todos los días.</h2>
+    <div class="stack">
+      <div><h4>Backend</h4><p>Java · Spring Boot · Spring Security · JWT · Spring Data JPA · MapStruct · Maven</p></div>
+      <div><h4>Frontend y móvil</h4><p>React · React Native (Expo) · JavaScript · Material UI</p></div>
+      <div><h4>Datos</h4><p>MySQL</p></div>
+      <div><h4>Cloud y DevOps</h4><p>AWS (EC2, RDS, S3) · Docker · GitHub Actions</p></div>
+      <div><h4>Observabilidad</h4><p>Grafana · Loki · Prometheus</p></div>
+      <div><h4>Calidad</h4><p>JUnit · Mockito · Claude Code</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Cómo trabajo</p>
+    <h2>Lo que vas a sumar a tu equipo.</h2>
+    <div class="how">
+      <div><h3>Me hago cargo de punta a punta</h3><p class="muted">Relevo requerimientos con el cliente, diseño la solución, la programo, la despliego y la sigo de cerca en producción.</p></div>
+      <div><h3>Uso IA con criterio</h3><p class="muted">Trabajo con Claude Code todos los días, por ejemplo para generar y revisar tests con Mockito. Reviso cada cambio antes de subirlo.</p></div>
+      <div><h3>Quiero crecer en equipo</h3><p class="muted">Después de años trabajando con clientes directos, busco sumarme a un equipo de desarrollo, en un puesto junior o semi senior.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contacto</p>
+    <h2>¿Hablamos?</h2>
+    <p class="muted" style="margin-bottom:6px">Analista en Sistemas · Córdoba, Argentina (UTC-3) · Inglés B2</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:mateoiriso@gmail.com">mateoiriso@gmail.com</a>
+      <a class="btn" href="https://wa.me/5493513924715" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>Mateo Nicolás Iriso · 2026</footer>
+
+</body>
+</html>

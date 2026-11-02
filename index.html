@@ -113,29 +113,37 @@
     [data-v="c"] .intro { padding: 26px; }
     [data-v="c"] .contact { margin: 0 12px; }
   }
+  .lang { position: fixed; top: 14px; right: 14px; z-index: 10; display: flex; gap: 2px; padding: 4px; background: #1a1a1a; border-radius: 99px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+  .lang button { font: 700 12px Inter, sans-serif; letter-spacing: .04em; color: #bbb; background: none; border: 0; padding: 7px 11px; border-radius: 99px; cursor: pointer; }
+  .lang button.on { background: #fff; color: #1a1a1a; }
 </style>
 </head>
 <body>
 
+<nav class="lang" aria-label="Idioma / Language">
+  <button type="button" data-lang="es">ES</button>
+  <button type="button" data-lang="en">EN</button>
+</nav>
+
 <div class="wrap">
   <header class="top">
     <div class="intro">
-      <span class="status">Disponible · remoto o híbrido en Córdoba</span>
+      <span class="status" data-en="Available · remote or hybrid in Córdoba, Argentina">Disponible · remoto o híbrido en Córdoba</span>
       <h1>Mateo Iriso</h1>
-      <p class="role">Desarrollador Full Stack. Construyo sistemas completos con Java, Spring Boot, React y React Native, y los llevo a producción en AWS.</p>
+      <p class="role" data-en="Java Backend and Full Stack Developer. I build complete systems with Java, Spring Boot, React and React Native, and ship them to production on AWS.">Desarrollador Backend Java y Full Stack. Construyo sistemas completos con Java, Spring Boot, React y React Native, y los llevo a producción en AWS.</p>
       <div class="cta">
-        <a class="btn primary" href="mailto:mateoiriso@gmail.com">Escribime</a>
-        <a class="btn" href="Iriso_Mateo_CV_2026.pdf" download>CV en español</a>
-        <a class="btn" href="Iriso_Mateo_Resume_EN.pdf" download>Resume in English</a>
+        <a class="btn primary" href="mailto:mateoiriso@gmail.com" data-en="Email me">Escribime</a>
+        <a class="btn" href="Iriso_Mateo_CV_2026.pdf" download data-en="CV in Spanish">CV en español</a>
+        <a class="btn" href="Iriso_Mateo_Resume_EN.pdf" download data-en="Resume in English">Resume in English</a>
         <a class="btn" href="https://www.linkedin.com/in/mateoiriso/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <div class="photo" role="img" aria-label="Foto de Mateo Iriso"></div>
+    <div class="photo" role="img" aria-label="Mateo Iriso"></div>
     <div class="metrics">
-      <div class="metric"><b>+2 años</b><span>desarrollando para clientes reales</span></div>
-      <div class="metric"><b>~65</b><span>repartidores y clientes usan la app que hice para MYM</span></div>
-      <div class="metric"><b>2</b><span>sistemas completos en producción, de la base de datos al celular</span></div>
-      <div class="metric"><b>1.º</b><span>puesto en la Hackacode 2024 de TodoCode Academy</span></div>
+      <div class="metric"><b data-en="2+ years">+2 años</b><span data-en="building software for real clients">desarrollando para clientes reales</span></div>
+      <div class="metric"><b>~65</b><span data-en="delivery drivers and customers use the app I built for MYM">repartidores y clientes usan la app que hice para MYM</span></div>
+      <div class="metric"><b>2</b><span data-en="complete systems in production, from the database to the phone">sistemas completos en producción, de la base de datos al celular</span></div>
+      <div class="metric"><b data-en="1st">1.º</b><span data-en="place at TodoCode Academy's Hackacode 2024">puesto en la Hackacode 2024 de TodoCode Academy</span></div>
     </div>
   </header>
 </div>
@@ -143,48 +151,48 @@
 <section>
   <div class="wrap case">
     <div>
-      <p class="eyebrow">Caso principal · Cliente: MYM Distribuidora · febrero 2025 a hoy</p>
-      <h2>Un sistema de pedidos completo, hecho y mantenido por mí.</h2>
-      <p>MYM es una distribuidora que necesitaba ordenar todo el circuito de sus pedidos. Diseñé el backend en Spring Boot, la web en React y la app Android en React Native con Expo, que hoy usan unas 65 personas.</p>
-      <p>También me ocupo de la infraestructura en AWS, el deploy automático con Docker y GitHub Actions, y el monitoreo con Grafana, Loki y Prometheus.</p>
-      <div class="rule">
+      <p class="eyebrow" data-en="Main project · Client: MYM Distribuidora · Feb 2025 to date">Caso principal · Cliente: MYM Distribuidora · febrero 2025 a hoy</p>
+      <h2 data-en="A complete order system, built and maintained by me.">Un sistema de pedidos completo, hecho y mantenido por mí.</h2>
+      <p data-en="MYM is a distributor that needed to organize its whole order flow. I designed the Spring Boot backend, the React web app and the React Native (Expo) Android app, used today by about 65 people.">MYM es una distribuidora que necesitaba ordenar todo el circuito de sus pedidos. Diseñé el backend en Spring Boot, la web en React y la app Android en React Native con Expo, que hoy usan unas 65 personas.</p>
+      <p data-en="I also run the AWS infrastructure, automated deployment with Docker and GitHub Actions, and monitoring with Grafana, Loki and Prometheus.">También me ocupo de la infraestructura en AWS, el deploy automático con Docker y GitHub Actions, y el monitoreo con Grafana, Loki y Prometheus.</p>
+      <div class="rule" data-en="&lt;b&gt;The most interesting problem:&lt;/b&gt; when an order ends up partial or cancelled, the leftover products in the van are offered to the next customers. If the product was in the original order, the old price is kept. If it wasn't and the price went up, the new price applies.">
         <b>El problema más interesante:</b> cuando un pedido queda parcial o cancelado, los productos que sobran en la camioneta se ofrecen a los próximos clientes. Si el producto estaba en el pedido original, se respeta el precio viejo. Si no estaba y hubo aumento, se cobra el nuevo.
       </div>
       <div class="tags"><span>Java</span><span>Spring Boot</span><span>Spring Security + JWT</span><span>MySQL</span><span>React</span><span>React Native (Expo)</span><span>AWS</span><span>Docker</span><span>Grafana</span></div>
     </div>
     <ol class="flow" aria-label="Flujo de un pedido">
-      <li>El cliente hace el pedido desde la app</li>
-      <li>El sistema lo clasifica por zona en Google Maps</li>
-      <li>Se asigna a un repartidor</li>
-      <li>Entrega completa, parcial o cancelada</li>
-      <li class="hl">Los sobrantes se reasignan a otros pedidos</li>
-      <li>Se registran créditos, comisiones y pagos</li>
+      <li data-en="The customer places the order in the app">El cliente hace el pedido desde la app</li>
+      <li data-en="The system assigns it to a zone using Google Maps">El sistema lo clasifica por zona en Google Maps</li>
+      <li data-en="It gets assigned to a delivery driver">Se asigna a un repartidor</li>
+      <li data-en="Delivery: complete, partial or cancelled">Entrega completa, parcial o cancelada</li>
+      <li class="hl" data-en="Leftover products are reassigned to other orders">Los sobrantes se reasignan a otros pedidos</li>
+      <li data-en="Credits, commissions and payments are recorded">Se registran créditos, comisiones y pagos</li>
     </ol>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Otros proyectos</p>
-    <h2>Del hardware automotriz a la web de un negocio.</h2>
+    <p class="eyebrow" data-en="Other projects">Otros proyectos</p>
+    <h2 data-en="From automotive hardware to a small business website.">Del hardware automotriz a la web de un negocio.</h2>
     <div class="projects">
       <article class="proj">
-        <span class="when">Cliente: EFE Electrónica · junio 2024 a sept. 2025</span>
-        <h3>Gestión y versionado de módulos automotrices</h3>
-        <p>Backend en Spring Boot que administra los módulos de un equipo de diagnóstico para autos y guarda cada versión en Amazon S3. Hice también la app de escritorio en Python con PyQt5 y los tests con JUnit y Mockito.</p>
+        <span class="when" data-en="Client: EFE Electrónica · Jun 2024 to Sep 2025">Cliente: EFE Electrónica · junio 2024 a sept. 2025</span>
+        <h3 data-en="Automotive module management and versioning">Gestión y versionado de módulos automotrices</h3>
+        <p data-en="Spring Boot backend that manages the modules of a car diagnostic device and stores every version on Amazon S3. I also built the desktop app in Python with PyQt5 and the tests with JUnit and Mockito.">Backend en Spring Boot que administra los módulos de un equipo de diagnóstico para autos y guarda cada versión en Amazon S3. Hice también la app de escritorio en Python con PyQt5 y los tests con JUnit y Mockito.</p>
         <div class="tags"><span>Spring Boot</span><span>MapStruct</span><span>S3</span><span>PyQt5</span><span>JUnit</span></div>
       </article>
       <article class="proj">
         <span class="when">Freelance · 2026</span>
-        <h3>Sitios web para negocios</h3>
-        <p>Webs rápidas en React para clientes chicos, desarrolladas con Claude Code. Ejemplo publicado: <a href="https://anagottardi.com.ar" target="_blank" rel="noopener">anagottardi.com.ar</a>.</p>
+        <h3 data-en="Websites for small businesses">Sitios web para negocios</h3>
+        <p data-en="Fast React websites for small clients, built with Claude Code. Live example: &lt;a href=&quot;https://anagottardi.com.ar&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;anagottardi.com.ar&lt;/a&gt;.">Webs rápidas en React para clientes chicos, desarrolladas con Claude Code. Ejemplo publicado: <a href="https://anagottardi.com.ar" target="_blank" rel="noopener">anagottardi.com.ar</a>.</p>
         <div class="tags"><span>React</span><span>Claude Code</span><span>Hostinger</span></div>
       </article>
       <article class="proj">
         <span class="when">Hackacode · 2024</span>
-        <h3>Primer puesto con una web de reservas</h3>
-        <p>Una plataforma estilo Booking hecha en equipo durante la hackathon de TodoCode Academy. Me encargué del frontend con React y Material UI.</p>
-        <div class="tags"><span>React</span><span>Material UI</span><span>Trabajo en equipo</span></div>
+        <h3 data-en="First place with a booking website">Primer puesto con una web de reservas</h3>
+        <p data-en="A Booking-style platform built as a team during TodoCode Academy's hackathon. I was in charge of the frontend with React and Material UI.">Una plataforma estilo Booking hecha en equipo durante la hackathon de TodoCode Academy. Me encargué del frontend con React y Material UI.</p>
+        <div class="tags"><span>React</span><span>Material UI</span><span data-en="Teamwork">Trabajo en equipo</span></div>
       </article>
     </div>
   </div>
@@ -193,35 +201,35 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">Stack</p>
-    <h2>Con lo que trabajo todos los días.</h2>
+    <h2 data-en="What I work with every day.">Con lo que trabajo todos los días.</h2>
     <div class="stack">
       <div><h4>Backend</h4><p>Java · Spring Boot · Spring Security · JWT · Spring Data JPA · MapStruct · Maven</p></div>
-      <div><h4>Frontend y móvil</h4><p>React · React Native (Expo) · JavaScript · Material UI</p></div>
-      <div><h4>Datos</h4><p>MySQL</p></div>
-      <div><h4>Cloud y DevOps</h4><p>AWS (EC2, RDS, S3) · Docker · GitHub Actions</p></div>
-      <div><h4>Observabilidad</h4><p>Grafana · Loki · Prometheus</p></div>
-      <div><h4>Calidad</h4><p>JUnit · Mockito · Claude Code</p></div>
+      <div><h4 data-en="Frontend and mobile">Frontend y móvil</h4><p>React · React Native (Expo) · JavaScript · Material UI</p></div>
+      <div><h4 data-en="Data">Datos</h4><p>MySQL</p></div>
+      <div><h4 data-en="Cloud and DevOps">Cloud y DevOps</h4><p>AWS (EC2, RDS, S3) · Docker · GitHub Actions</p></div>
+      <div><h4 data-en="Observability">Observabilidad</h4><p>Grafana · Loki · Prometheus</p></div>
+      <div><h4 data-en="Quality">Calidad</h4><p>JUnit · Mockito · Claude Code</p></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Cómo trabajo</p>
-    <h2>Lo que vas a sumar a tu equipo.</h2>
+    <p class="eyebrow" data-en="How I work">Cómo trabajo</p>
+    <h2 data-en="What I'll bring to your team.">Lo que vas a sumar a tu equipo.</h2>
     <div class="how">
-      <div><h3>Me hago cargo de punta a punta</h3><p class="muted">Relevo requerimientos con el cliente, diseño la solución, la programo, la despliego y la sigo de cerca en producción.</p></div>
-      <div><h3>Uso IA con criterio</h3><p class="muted">Trabajo con Claude Code todos los días, por ejemplo para generar y revisar tests con Mockito. Reviso cada cambio antes de subirlo.</p></div>
-      <div><h3>Quiero crecer en equipo</h3><p class="muted">Después de años trabajando con clientes directos, busco sumarme a un equipo de desarrollo, en un puesto junior o semi senior.</p></div>
+      <div><h3 data-en="I own the work end to end">Me hago cargo de punta a punta</h3><p class="muted" data-en="I gather requirements with the client, design the solution, build it, deploy it and keep an eye on it in production.">Relevo requerimientos con el cliente, diseño la solución, la programo, la despliego y la sigo de cerca en producción.</p></div>
+      <div><h3 data-en="I use AI with judgment">Uso IA con criterio</h3><p class="muted" data-en="I work with Claude Code every day, for example to generate and review Mockito tests. I review every change before pushing it.">Trabajo con Claude Code todos los días, por ejemplo para generar y revisar tests con Mockito. Reviso cada cambio antes de subirlo.</p></div>
+      <div><h3 data-en="I want to grow in a team">Quiero crecer en equipo</h3><p class="muted" data-en="After more than 2 years working directly with clients, I'm looking to join a development team as a junior or mid-level Java backend developer.">Después de más de 2 años trabajando con clientes directos, busco sumarme a un equipo de desarrollo como Backend Java, en un puesto junior o semi senior.</p></div>
     </div>
   </div>
 </section>
 
 <section class="contact">
   <div class="wrap">
-    <p class="eyebrow">Contacto</p>
-    <h2>¿Hablamos?</h2>
-    <p class="muted" style="margin-bottom:6px">Analista en Sistemas · Córdoba, Argentina (UTC-3) · Inglés B2</p>
+    <p class="eyebrow" data-en="Contact">Contacto</p>
+    <h2 data-en="Let's talk?">¿Hablamos?</h2>
+    <p class="muted" style="margin-bottom:6px" data-en="Systems Analyst (technical degree) · Córdoba, Argentina (UTC-3) · English B2">Analista en Sistemas · Córdoba, Argentina (UTC-3) · Inglés B2</p>
     <div class="cta">
       <a class="btn primary" href="mailto:mateoiriso@gmail.com">mateoiriso@gmail.com</a>
       <a class="btn" href="https://wa.me/5493513924715" target="_blank" rel="noopener">WhatsApp</a>
@@ -232,5 +240,23 @@
 
 <footer>Mateo Nicolás Iriso · 2026</footer>
 
+<script>
+  const nodes = [...document.querySelectorAll("[data-en]")];
+  nodes.forEach(n => { n.dataset.es = n.innerHTML; });
+  const titles = { es: "Mateo Iriso · Desarrollador Backend Java", en: "Mateo Iriso · Java Backend Developer" };
+  function setLang(lang) {
+    nodes.forEach(n => { n.innerHTML = lang === "en" ? n.dataset.en : n.dataset.es; });
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+    document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  const param = new URLSearchParams(location.search).get("lang");
+  const browser = (navigator.language || "es").toLowerCase().startsWith("es") ? "es" : "en";
+  setLang(param === "en" || param === "es" ? param : saved || browser);
+</script>
 </body>
 </html>
